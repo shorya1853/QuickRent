@@ -25,6 +25,7 @@ export const PRODUCTS = [
     productName: "Cannon M50 Camera",
     price: 699.0,
     productImage: product3,
+    details:{}
   },
   {
     id: 4,

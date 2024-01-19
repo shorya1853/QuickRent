@@ -1,6 +1,8 @@
 import React from "react";
 import { PRODUCTS } from "../../products";
 import { Product } from "./product";
+// import { useEffect, useContext } from "react";
+// import { UserContext } from "../../context/user-context";
 import "./shop.css";
 
 export const Shop = () => {
