@@ -36,7 +36,7 @@ function Navbarlog() {
 
   return (
     <>
-      <Navbar key="xxl" expand="xxl" className="bg-body-tertiary mb-3">
+     <Navbar key="xxl" expand="xxl" className="bg-body-tertiary mb-3">
         <Container fluid>
           <Navbar.Brand href="/">Quick Rent</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-xxl`} />
@@ -96,6 +96,8 @@ function Navbarlog() {
         </Container>
       </Navbar>
     </>
+  
+    
   );
 }
 

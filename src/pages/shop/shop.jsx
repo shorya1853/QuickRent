@@ -4,14 +4,15 @@ import { Product } from "./product";
 // import { useEffect, useContext } from "react";
 // import { UserContext } from "../../context/user-context";
 import "./shop.css";
+import Crousel from "../../components/crousel";
 
 export const Shop = () => {
   return (
     <div className="shop">
       <div className="shopTitle">
-        <h1>PedroTech Shop</h1>
+        <h1>NIKHIlTech  Shop</h1>
       </div>
-
+      <Crousel/>
       <div className="products">
         {PRODUCTS.map((product) => (
           <Product data={product} />
