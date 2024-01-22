@@ -1,12 +1,22 @@
-import React from "react";
+import React ,{useEffect, useContext}from "react";
 import { PRODUCTS } from "../../products";
 import { Product } from "./product";
 // import { useEffect, useContext } from "react";
-// import { UserContext } from "../../context/user-context";
+import { UserContext } from "../../context/user-context";
 import "./shop.css";
 import Crousel from "../../components/crousel";
 
 export const Shop = () => {
+
+  const {fetchData, fetchUserPost} = useContext(UserContext);
+
+  useEffect(()=> {
+    fetchUserPost()
+    fetchData();
+  }, [])
+
+
+
   return (
     <div className="shop">
       <div className="shopTitle">

@@ -1,5 +1,5 @@
-import { signOut } from 'firebase/auth';
-import { auth } from '../pages/Auth/firebase.config';
+// import { signOut } from 'firebase/auth';
+// import { auth } from '../pages/Auth/firebase.config';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -9,30 +9,29 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/user-context';
-import { useContext, useEffect} from 'react';
+import { useContext} from 'react';
+import {
+  MDBDropdown,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
+  MDBDropdownItem,
+} from "mdb-react-ui-kit";
+
 
 
 function Navbarlog() {
-  const {userAuth, fetchData, fetchUserPost} = useContext(UserContext);
+  const {userAuth, LogOut} = useContext(UserContext);
+  // const [userAuth, setUserAuth] = useState(false);
+
 
   const nav = useNavigate();
 
-  useEffect(()=> {
-    fetchData();
-    fetchUserPost();
-  })
 
-  const LogOut = async () => {
-    try {
-      await signOut(auth)
-      alert("signOut successfully")
-      nav("/")
-    } catch (err) {
-      console.error(err)
-    }
+
+  const SingOut = () => {
+    LogOut();
+    nav("/")
   }
-
-
 
   return (
     <>
@@ -57,18 +56,32 @@ function Navbarlog() {
                 <Nav.Link href="/Cart">Cart</Nav.Link>
                 {
                   userAuth ? (
-                    <NavDropdown
-                      title="Profile"
-                      id={`offcanvasNavbarDropdown-expand-xxl`}
-                    >
-                      <NavDropdown.Item href="/profile">
-                        Your Profile
-                      </NavDropdown.Item>
-                      <NavDropdown.Divider />
-                      <NavDropdown.Item onClick={LogOut}>
-                        SignOut
-                      </NavDropdown.Item>
-                    </NavDropdown>
+                    <MDBDropdown>
+                      <MDBDropdownToggle
+                        tag="a"
+                        className="nav-link d-flex align-items-center"
+                        href="#"
+                      >
+                        <img
+                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img(31).webp"
+                          className="rounded-circle"
+                          height="22"
+                          alt="Avatar"
+                          loading="lazy"
+                        />
+                      </MDBDropdownToggle>
+                      <MDBDropdownMenu>
+                        <MDBDropdownItem>
+                          <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                        </MDBDropdownItem>
+                        <MDBDropdownItem>
+                          <NavDropdown.Item onClick={SingOut}>SignOut</NavDropdown.Item>
+                        </MDBDropdownItem>
+                        <MDBDropdownItem>
+                        <NavDropdown.Item href="#">Products</NavDropdown.Item>
+                        </MDBDropdownItem>
+                      </MDBDropdownMenu>
+                    </MDBDropdown>
                   ) : (
                     <NavDropdown
                       title="Profile"
