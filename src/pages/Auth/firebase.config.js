@@ -22,6 +22,7 @@ import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyCJLsqbMYdooww3S-9VPUK-aIkq2xq5KME",
   authDomain: "amazing-gearing-410813.firebaseapp.com",
+  databaseURL: "https://amazing-gearing-410813-default-rtdb.firebaseio.com",
   projectId: "amazing-gearing-410813",
   storageBucket: "amazing-gearing-410813.appspot.com",
   messagingSenderId: "600441529112",

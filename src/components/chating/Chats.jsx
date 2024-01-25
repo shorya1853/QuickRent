@@ -7,12 +7,11 @@ import { db } from "../../pages/Auth/firebase.config";
 const Chats = () => {
   const [chats, setChats] = useState([]);
 
-  const { userdata } = useContext(UserContext);
+  const { userdata} = useContext(UserContext);
   const { dispatch } = useContext(ChatContext);
 
   useEffect(() => {
-    const getChats = () => {
-      console.log(userdata.uid)
+    const getChats = async () => {
       const unsub = onSnapshot(doc(db, "userChats", userdata.uid), (doc) => {
         setChats(doc.data());
       });
@@ -22,8 +21,10 @@ const Chats = () => {
       };
     };
 
-    userdata.uid && getChats();
-  }, [userdata.uid]);
+    if (userdata && userdata.uid) {
+    getChats();
+  }
+  }, [userdata]);
 
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
@@ -41,6 +42,7 @@ const Chats = () => {
           <div className="userChatInfo">
             <span>{chat[1].userInfo.displayName}</span>
             <p>{chat[1].lastMessage?.text}</p>
+            <p>{new Date(chat[1].date.seconds * 1000).toLocaleDateString()}</p>
           </div>
         </div>
       ))}

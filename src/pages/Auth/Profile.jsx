@@ -1,11 +1,11 @@
-import React, { useContext, useEffect} from 'react';
+import React, { useContext} from 'react';
 import { UserContext } from '../../context/user-context';
 // import { UploadImages } from '../../methods/upload-images';
 import Avatar from '../../components/Avatar';
 import { Link } from 'react-router-dom';
 
 function Profile() {
-    const { userdata } = useContext(UserContext);
+    const { userdata} = useContext(UserContext);
 
     // useEffect(() => {
     //     console.log(userdata.uid)

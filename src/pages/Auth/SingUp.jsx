@@ -29,19 +29,8 @@ function SignUp() {
         const file = e.target[3].files[0];
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password)
-                .then((res) => {
-                    sendEmailVerification(res.user)
-                        .then((res) => {
-                            // onSubmit(res.user.uid)
-                            alert("Email verification sent to user");
-                            navigate('/'); // Assuming navigation only after verification
-                        })
-                        .catch((err) => {
-                            alert("Failed to send verification email:", err);
-                            // Handle verification failure, e.g., display error message
-                        });
+              sendEmailVerification(res.user)            
 
-                })
                 const date = new Date().getTime();
                 const storageRef = ref(storage, `${displayName + date}`);
           
@@ -65,36 +54,22 @@ function SignUp() {
                       await setDoc(doc(db, "userChats", res.user.uid), {});
                       navigate("/");
                     } catch (err) {
-                      console.log(err);
+                      console.error(err);
                       setErr(true);
                       setLoading(false);
                     }
                   });
                 });
         } catch (err) {
-
+            console.log(err)
         }
     }
-
-    // const onSubmit = async (userid) => {
-    //     try {
-    //         const userCollectionRef = collection(db, 'User'); // Assuming 'User' is your collection name
-    //         const newUserDocRef = doc(userCollectionRef, userid);
-
-    //         await setDoc(newUserDocRef, {
-    //             Email: email,
-    //             UserName: userName,
-    //         });
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // };
 
     return (
         // <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh', border: '1px solid #eee', backgroundColor: '#f5f5f5' }}>
         <div className="formContainer">
             <div className="formWrapper">
-                <span className="logo">Lama Chat</span>
+                <span className="logo">QuickRent</span>
                 <span className="title">Register</span>
                 <form onSubmit={createUser}>
                     <input required type="text" placeholder="display name" />

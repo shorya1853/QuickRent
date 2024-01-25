@@ -20,13 +20,9 @@ import {
 
 
 function Navbarlog() {
-  const {userAuth, LogOut} = useContext(UserContext);
+  const {userAuth, LogOut, userdata} = useContext(UserContext);
   // const [userAuth, setUserAuth] = useState(false);
-
-
   const nav = useNavigate();
-
-
 
   const SingOut = () => {
     LogOut();
@@ -62,13 +58,25 @@ function Navbarlog() {
                         className="nav-link d-flex align-items-center"
                         href="#"
                       >
-                        <img
-                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img(31).webp"
+                        {
+                          userdata ? (
+                            <img
+                          src={userdata.photoURL}
                           className="rounded-circle"
                           height="22"
                           alt="Avatar"
                           loading="lazy"
                         />
+                          ) : (
+                            <img
+                          src="https://seekicon.com/free-icon-download/user_21.svg"
+                          className="rounded-circle"
+                          height="22"
+                          alt="Avatar"
+                          loading="lazy"
+                        />
+                          )
+                        }
                       </MDBDropdownToggle>
                       <MDBDropdownMenu>
                         <MDBDropdownItem>

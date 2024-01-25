@@ -11,35 +11,26 @@ export const UserContext = createContext(null);
 export const UserContextProvider = (props) => {
 
     const [userdata, setUserdata] = useState(null);
-    const [userAuth, setUserAuth] = useState(false);
-    const [user, setUser] = useState('');
+    const [userAuth, setUserAuth] = useState(null);
+    // const [user, setUser] = useState('');
 
+    useEffect(() => {
+      onAuthStateChanged(auth, (user)=> {
+        if(user){
+          setUserAuth(true)
+          fetchUserPost(user.uid)
 
-    const fetchData = async () => {
-        try {
-          const authUser = await new Promise((resolve, reject) => {
-            const unsubscribe = onAuthStateChanged(auth, (user) => {
-              unsubscribe(); // Unsubscribe once we get the user or determine it's null
-              resolve(user);
-            }, reject);
-          });
-
-          if (authUser) {
-            setUser(authUser);
-            setUserAuth(true);
-          } else {
-            console.log('No user found');
-            setUserAuth(false);
-          }
-        } catch (error) {
-          console.error('Error fetching user authentication:', error);
+        }
+        else {
+          console.log('No user found');
           setUserAuth(false);
         }
-      };
+      })
+    }, [userAuth])
 
-    const fetchUserPost = async () => {
+    const fetchUserPost = async (userUid) => {
         try {
-            const userRef = doc(db, 'users',user.uid);
+            const userRef = doc(db, 'users', userUid);
             const docSnapshot = await getDoc(userRef);
     
             if (docSnapshot.exists()) {
@@ -52,8 +43,8 @@ export const UserContextProvider = (props) => {
         } catch (error) {
             console.log('Error fetching user data:', error);
         }
-
         
+
     };
 
     const LogOut = async () => {
@@ -65,18 +56,10 @@ export const UserContextProvider = (props) => {
         console.error(err)
       }
     }
-    
-    useEffect(()=> {
-      fetchData()
-      fetchUserPost();
-    }, [userAuth])
-
 
       const contextValue = {
-        user,
         userdata,
         userAuth,
-        fetchData,
         fetchUserPost, 
         LogOut,
       }
