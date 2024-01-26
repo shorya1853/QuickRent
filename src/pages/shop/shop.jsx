@@ -1,6 +1,6 @@
 import React from "react";
-import { PRODUCTS } from "../../products";
-import { Product } from "./product";
+import all_products from "../../assets/Assets/all_product";
+import { Product } from "../../components/product";
 // import { useEffect, useContext } from "react";
 import "./shop.css";
 import Crousel from "../../components/crousel";
@@ -14,8 +14,8 @@ export const Shop = () => {
       </div>
       <Crousel/>
       <div className="products">
-        {PRODUCTS.map((product) => (
-          <Product data={product} />
+        {all_products.map((item, i) => (
+          <Product key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price} />
         ))}
       </div>
     </div>
