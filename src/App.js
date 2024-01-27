@@ -9,6 +9,8 @@ import SignIn from "./pages/Auth/SingIn";
 import SignUp from "./pages/Auth/SingUp";
 import Profile from "./pages/Auth/Profile"
 import Chating from "./pages/Auth/Chating";
+import Products from "./pages/Products/Products";
+import { Footer } from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Route path="/" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/product/:productId" element={<Products/>}/>
           <Route element={<PrivateRoutes />}>
                 <Route element={<Profile/>} path="/profile" exact/>
                 <Route element={<Chating/>} path="/chats"/>
@@ -26,6 +29,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
+        <Footer/>
       </Router>
     </div>
 

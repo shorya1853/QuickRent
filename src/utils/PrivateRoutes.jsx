@@ -1,12 +1,12 @@
 import { Outlet, Navigate } from 'react-router-dom'
 import { UserContext } from '../context/user-context';
-import {Audio} from 'react-loader-spinner'
+import Spinner from 'react-bootstrap/Spinner';
 import { useContext } from 'react';
 
 const useAuth = () => {
     const {userAuth} = useContext(UserContext);
     if (userAuth === null) {
-        return <Audio/>
+        return <Spinner/>
       }
       return userAuth;
   };

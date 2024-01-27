@@ -16,11 +16,13 @@ import {
   MDBDropdownToggle,
   MDBDropdownItem,
 } from "mdb-react-ui-kit";
+import { ShopContext } from '../context/shop-context';
 
 
 
 function Navbarlog() {
   const {userAuth, LogOut, userdata} = useContext(UserContext);
+  const {getTotalCartItems} = useContext(ShopContext)
   // const [userAuth, setUserAuth] = useState(false);
   const nav = useNavigate();
 
@@ -50,6 +52,7 @@ function Navbarlog() {
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/contact">Contact</Nav.Link>
                 <Nav.Link href="/Cart">Cart</Nav.Link>
+                <div className="nav-cart-count">{getTotalCartItems()}</div>
                 {
                   userAuth ? (
                     <MDBDropdown>
