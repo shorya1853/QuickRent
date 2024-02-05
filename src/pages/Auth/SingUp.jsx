@@ -5,15 +5,12 @@ import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } 
 import { useNavigate, Link } from 'react-router-dom';
 // import Button from 'react-bootstrap/Button';
 import { setDoc, doc} from 'firebase/firestore';
+import { RiImageAddFill } from "react-icons/ri";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 
 
 function SignUp() {
-
-    // const [email, setEmail] = useState();
-    // const [password, setPassword] = useState();
-    // const [userName, setUserName] = useState("");
     const [err, setErr] = useState(false);
     const [loading, setLoading] = useState(false);
     // const [showpassword, setshowpassword] = useState(false);
@@ -37,12 +34,10 @@ function SignUp() {
                 await uploadBytesResumable(storageRef, file).then(() => {
                   getDownloadURL(storageRef).then(async (downloadURL) => {
                     try {
-                      //Update profile
                       await updateProfile(res.user, {
                         displayName,
                         photoURL: downloadURL,
                       });
-                      //create user on firestore
                       await setDoc(doc(db, "users", res.user.uid), {
                         uid: res.user.uid,
                         displayName,
@@ -51,7 +46,7 @@ function SignUp() {
                       });
           
                       //create empty user chats on firestore
-                      await setDoc(doc(db, "userChats", res.user.uid), {});
+                      //await setDoc(doc(db, "userChats", res.user.uid), {});
                       navigate("/");
                     } catch (err) {
                       console.error(err);
@@ -66,7 +61,6 @@ function SignUp() {
     }
 
     return (
-        // <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh', border: '1px solid #eee', backgroundColor: '#f5f5f5' }}>
         <div className="formContainer">
             <div className="formWrapper">
                 <span className="logo">QuickRent</span>
@@ -77,7 +71,7 @@ function SignUp() {
                     <input required type="password" placeholder="password" />
                     <input required style={{ display: "none" }} type="file" id="file" />
                     <label htmlFor="file">
-                        <img src={""} alt="" />
+                        <RiImageAddFill />
                         <span>Add an avatar</span>
                     </label>
                     <button disabled={loading}>Sign up</button>
