@@ -1,20 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { ChatContextProvider } from "./context/ChatContext";
 import { UserContextProvider } from "./context/user-context";
-import { ShopContextProvider } from "./context/shop-context";
+import { SetShopContextProvider } from "./context/set-shop-context";
+import { ProductContextProvider } from "./context/ProductContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ShopContextProvider>
+  <ProductContextProvider>
     <UserContextProvider>
-      <ChatContextProvider>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </ChatContextProvider>
+        <SetShopContextProvider>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </SetShopContextProvider>
     </UserContextProvider>
-  </ShopContextProvider>
+  </ProductContextProvider>
 
 );

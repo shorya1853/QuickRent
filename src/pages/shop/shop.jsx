@@ -1,23 +1,36 @@
-import React from "react";
-import all_products from "../../assets/Assets/all_product";
+import React, { useContext, useEffect } from "react";
+import { UserContext } from "../../context/user-context";
 import { Product } from "../../components/product";
 // import { useEffect, useContext } from "react";
 import "./shop.css";
 import Crousel from "../../components/crousel";
+import Container from 'react-bootstrap/esm/Container';
+import Row from 'react-bootstrap/Row';
+import Spinner from 'react-bootstrap/Spinner';
+import { ProductContext } from "../../context/ProductContext";
 
 export const Shop = () => {
+  const { product } = useContext(ProductContext);
 
   return (
-    <div className="shop">
+    <div className="shop" style={{margin: '100px 5px'}}>
       <div className="shopTitle">
-        <h1>NIKHIlTech  Shop</h1>
+        <Crousel />
       </div>
-      <Crousel/>
-      <div className="products">
-        {all_products.map((item, i) => (
-          <Product key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price} />
-        ))}
-      </div>
+      {product? (
+        <Container className="d-flex justify-content-around">
+            {product.map((product, i) => (
+              <Product key={i} id={product.id}
+                image={product.proImag}
+                name={product.productName}
+                price={product.price} />
+            ))}
+        </Container>
+      ) : (
+        <Container>
+          <Spinner />
+        </Container>
+      )}
     </div>
   );
 };

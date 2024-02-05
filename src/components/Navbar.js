@@ -16,14 +16,17 @@ import {
   MDBDropdownToggle,
   MDBDropdownItem,
 } from "mdb-react-ui-kit";
-import { ShopContext } from '../context/shop-context';
+import { BiLogoQuora } from "react-icons/bi";
+import { CiSearch } from "react-icons/ci";
+import { SetShopContext } from '../context/set-shop-context';
+
 
 
 
 function Navbarlog() {
   const {userAuth, LogOut, userdata} = useContext(UserContext);
-  const {getTotalCartItems} = useContext(ShopContext)
   // const [userAuth, setUserAuth] = useState(false);
+  const {getTotalCartItems} = useContext(SetShopContext)
   const nav = useNavigate();
 
   const SingOut = () => {
@@ -33,9 +36,9 @@ function Navbarlog() {
 
   return (
     <>
-     <Navbar key="xxl" expand="xxl" className="bg-body-tertiary mb-3">
+     <Navbar key="xxl" expand="xxl" fixed="top" className="bg-body-tertiary mb-3">
         <Container fluid>
-          <Navbar.Brand href="/">Quick Rent</Navbar.Brand>
+          <Navbar.Brand href="/"><BiLogoQuora size={'50'}/> QuickRent</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-xxl`} />
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-xxl`}
@@ -81,7 +84,7 @@ function Navbarlog() {
                           )
                         }
                       </MDBDropdownToggle>
-                      <MDBDropdownMenu>
+                      <MDBDropdownMenu className="row justify-content-md-center" style={{borderRadius: '0.2rem'}}>
                         <MDBDropdownItem>
                           <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                         </MDBDropdownItem>
@@ -97,6 +100,7 @@ function Navbarlog() {
                     <NavDropdown
                       title="Profile"
                       id={`offcanvasNavbarDropdown-expand-xxl`}
+                      className="row justify-content-md-center" style={{borderRadius: '0.2rem'}}
                     >
                       <NavDropdown.Item href="/signin">SignIn</NavDropdown.Item>
                       <NavDropdown.Item href="/signup">
@@ -113,7 +117,9 @@ function Navbarlog() {
                   className="me-2"
                   aria-label="Search"
                 />
-                <Button variant="outline-success">Search</Button>
+                <CiSearch onClick={()=>{
+                  console.log("search")
+                }} size={'40'}/>
               </Form>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
