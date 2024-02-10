@@ -35,7 +35,7 @@ export const Product = (props) => {
 </Card> */}
 return (
         
-        <div className="d-flex justify-content" >
+        <div className="Card">
         <div className="card">
         <div className="body">
           <div className="Image">
@@ -49,23 +49,11 @@ return (
           <Button className="add-card-btn" onClick={()=>CheckUser()}>Add to cart</Button>
         </div>
       </div>
-        <div className="Vertical-product">
-        <div className="card">
-        <div className="body">
-          <div className="Image">
-          <img className= "card-img-top" variant="top" src={props.image}/>
-          </div>
-          <p>{props.name}</p>
-            ${props.price}
-            <div className="footer">
-            <p>{props.id}</p>
-          </div>
-          <Button className="add-card-btn" onClick={()=>CheckUser()}>Add to cart</Button>
-        </div>
+       
       </div>
-        </div>
+        
       
-    </div>
+  
           );
         };
           

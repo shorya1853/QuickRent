@@ -35,13 +35,18 @@
 
 .card .Image {
   flex-grow: 1; /* Allow image to grow to fill remaining space */
+
+
 }
 
 .card .Image img {
   width: 100%; /* Ensure the image fills its container */
   height: 200px; /* Set the fixed height for the images */
   object-fit: cover; /* Maintain aspect ratio and cover container */
-  border-radius: 8px;
+  border-radius: 8px;  
+  object-fit: contain;
+ 
+  
 }
 
 .card p {

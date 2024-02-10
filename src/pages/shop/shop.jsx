@@ -18,14 +18,14 @@ export const Shop = () => {
         <Crousel />
       </div>
       {product? (
-        <Container className="d-flex justify-content-around">
+        <div className="Card-container">
             {product.map((product, i) => (
               <Product key={i} id={product.id}
                 image={product.proImag}
                 name={product.productName}
                 price={product.price} />
             ))}
-        </Container>
+        </div>
       ) : (
         <Container>
           <Spinner />
