@@ -11,12 +11,14 @@ import Profile from "./pages/Auth/Profile"
 import Chating from "./pages/Auth/Chating";
 import Products from "./pages/Products/Products";
 import { Footer } from "./components/Footer/Footer";
+import { Navbar } from "./components/Navbar-test/Navbar-test";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Navbarlog />
+        {/* <Navbarlog /> */}
+        <Navbar />
         <Routes>
           <Route path="/" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
