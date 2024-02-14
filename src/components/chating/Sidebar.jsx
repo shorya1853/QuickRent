@@ -1,5 +1,5 @@
 import React from "react";
-import Chats from "./chating/Chats";
+import Chats from "./Chats";
 import Search from "./Search";
 
 const Sidebar = () => {
