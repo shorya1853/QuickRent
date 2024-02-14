@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState,useRef } from 'react';
 import { UserContext } from '../../context/user-context';
 // import { UploadImages } from '../../methods/upload-images';
 import Avatar from '../../components/Avatar';
@@ -16,7 +16,7 @@ function Profile() {
     const { userdata, userproduct, deleteProduct} = useContext(UserContext);
     const [open, setOpen] = useState(false);
     return (
-        <div style={{margin: '100px 50px'}}>
+        <div                                            >
             <div>
                 {userdata && (
                     <>
@@ -33,8 +33,7 @@ function Profile() {
                                                 <Card.Title>{product.productName}</Card.Title>
                                                 <Card.Text>{product.productDescription}</Card.Text>
                                                 <Card.Text>{product.category}</Card.Text>
-                                                <Card.Text>{product.price}</Card.Text>
-                                                <p>{product.id}</p>
+                                                <Card.Text>{product.price}</Card.Text> 
                                                 <Button variant="outline-primary" 
                                                 onClick={()=>{
                                                     deleteProduct(product.id, product.proImag);

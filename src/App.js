@@ -1,4 +1,5 @@
 import "./style.scss";
+import { useRef } from "react";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { Shop } from "./pages/shop/shop";
@@ -11,12 +12,17 @@ import Profile from "./pages/Auth/Profile"
 import Chating from "./pages/Auth/Chating";
 import Products from "./pages/Products/Products";
 import { Footer } from "./components/Footer/Footer";
+import LoadingBar from 'react-top-loading-bar'
+
 
 function App() {
+
+  const ref = useRef(null)
   return (
     <div className="App">
       <Router>
         <Navbarlog />
+        <LoadingBar color='#FF0000' ref={ref} />
         <Routes>
           <Route path="/" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />

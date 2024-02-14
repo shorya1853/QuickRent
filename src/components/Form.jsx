@@ -89,6 +89,7 @@ function GridComplexExample() {
                 date: Timestamp.now(),
                 price: price,
                 proImag: downloadURL,
+                chats: [],
             });
             // }
             

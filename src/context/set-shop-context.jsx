@@ -52,7 +52,7 @@ export const SetShopContextProvider = (props) => {
   const addToCart = async (itemId) => {
     try {
       const userRef = doc(db, 'cart', userdata.uid);
-      const currentCartData = cartItems;
+      const currentCartData = await cartItems;
       currentCartData[itemId] = (currentCartData[itemId] || 0) + 1;
       await setDoc(userRef, { cartData: currentCartData });
       setCartItems(currentCartData);
