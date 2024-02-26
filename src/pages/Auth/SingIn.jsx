@@ -36,7 +36,7 @@ function SignIn() {
     }
 
     return (
-        <div>
+        <div style={{margin: '100px 50px'}}>
             <h1>SignIn</h1>
 
             <input type="text" placeholder="Enter your email address" onChange={(e) => setEmail(e.target.value)} />

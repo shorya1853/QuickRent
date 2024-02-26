@@ -1,5 +1,5 @@
 
-$spacer: 2;
+$custom: 15;
 $primary: #87c2f7;
 
 $theme-colors: (
@@ -9,10 +9,16 @@ $theme-colors: (
 
 
 $box-shadow: 0 .5rem 1rem rgba($primary, .15) !default;
+$border-color: $primary;
 
 .px-2 {
-  padding-left: ($spacer * .5) !important;
-  padding-right: ($spacer * .5) !important;
+  padding-right: ($custom * .5) !important;
+  padding-left: ($custom * .5) !important;
+}
+
+.my-2 {
+  margin-top: ($custom * .5) !important;
+  margin-bottom: ($custom * .5) !important;
 }
 
 @import "../node_modules/bootstrap/scss/bootstrap";

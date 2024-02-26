@@ -1,4 +1,5 @@
 import "./style.scss";
+import { useRef } from "react";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { Shop } from "./pages/shop/shop";
@@ -14,6 +15,8 @@ import { Footer } from "./components/Footer/Footer";
 import { Navbar } from "./components/Navbar-test/Navbar-test";
 
 function App() {
+
+  const ref = useRef(null)
   return (
     <div className="App">
       <Router>

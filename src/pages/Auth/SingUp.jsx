@@ -46,7 +46,7 @@ function SignUp() {
                       });
           
                       //create empty user chats on firestore
-                      //await setDoc(doc(db, "userChats", res.user.uid), {});
+                      await setDoc(doc(db, "userChats", res.user.uid), {});
                       navigate("/");
                     } catch (err) {
                       console.error(err);
@@ -61,7 +61,7 @@ function SignUp() {
     }
 
     return (
-        <div className="formContainer">
+        <div className="formContainer" style={{margin: '100px 5px'}}>
             <div className="formWrapper">
                 <span className="logo">QuickRent</span>
                 <span className="title">Register</span>

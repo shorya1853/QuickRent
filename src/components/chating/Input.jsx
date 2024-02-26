@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { CiImageOn } from "react-icons/ci";
 import { IoIosAttach } from "react-icons/io";
+import { RiArrowDropRightLine } from "react-icons/ri";
 import { UserContext } from "../../context/user-context";
 import { ChatContext } from "../../context/ChatContext";
 import {
@@ -13,10 +14,16 @@ import {
 import { db, storage } from "../../pages/Auth/firebase.config";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import Container from "react-bootstrap/esm/Container";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
-const Input = () => {
+
+const Input = (props) => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
+  const owner = props.owner
 
   const { userdata } = useContext(UserContext);
   const { data } = useContext(ChatContext);
@@ -74,27 +81,31 @@ const Input = () => {
     setImg(null);
   };
   return (
-    <div className="input">
-      <input
-        type="text"
-        placeholder="Type something..."
-        onChange={(e) => setText(e.target.value)}
-        value={text}
-      />
-      <div className="send">
-        <IoIosAttach />
-        <input
-          type="file"
-          style={{ display: "none" }}
-          id="file"
-          onChange={(e) => setImg(e.target.files[0])}
-        />
-        <label htmlFor="file">
-          <img src={<CiImageOn />}alt="" />
-        </label>
-        <button onClick={handleSend}>Send</button>
-      </div>
-    </div>
+    <Container >
+      <Row>
+        <Col md="auto">
+          <CiImageOn size={30}/>
+          {/* <IoIosAttach size={30}/> */}
+          <input
+            type="file"
+            style={{ display: "none" }}
+            id="file"
+            onChange={(e) => setImg(e.target.files[0])}
+          /></Col>
+        <Col >
+          <input type="text"
+            placeholder={"Type a message to " + owner?.displayName}
+            id="formControlLg"
+            className="form-control form-control-lg"
+            onChange={(e) => setText(e.target.value)}
+            value={text} />
+        </Col>
+        <Col xs lg="1">
+        <Button onClick={handleSend}><RiArrowDropRightLine size={30} /></Button>
+        </Col>
+      </Row>
+
+    </Container>
   );
 };
 
