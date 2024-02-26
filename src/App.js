@@ -12,8 +12,7 @@ import Profile from "./pages/Auth/Profile"
 import Chating from "./pages/Auth/Chating";
 import Products from "./pages/Products/Products";
 import { Footer } from "./components/Footer/Footer";
-import LoadingBar from 'react-top-loading-bar'
-
+import { Navbar } from "./components/Navbar-test/Navbar-test";
 
 function App() {
 
@@ -21,8 +20,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbarlog />
-        <LoadingBar color='#FF0000' ref={ref} />
+        {/* <Navbarlog /> */}
+        <Navbar />
         <Routes>
           <Route path="/" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
